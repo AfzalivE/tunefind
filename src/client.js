@@ -116,6 +116,9 @@ export default class Client {
 		return this.season(showId, seasonNumber).then(({ episodes = [] }) => {
 			var field = null
 			var episodeId = null
+			if (!isNaN(identifier)) {
+				identifier = parseInt(identifier, 10)
+			}
 			switch (typeof identifier) {
 				case 'number':
 					field = 'number'
@@ -135,7 +138,7 @@ export default class Client {
 				}
 			}
 			if (!episodeId) {
-				const err = new Error('Episode Not Found')
+				const err = new Error(`Episode "${identifier}" Not Found!`)
 				return (callback && callback(err)) || err
 			}
 			return this.request(`/show/${formatId(showId)}/season-${seasonNumber}/${episodeId}`, query, callback)
