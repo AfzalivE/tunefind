@@ -5,7 +5,7 @@
  *
  */
 
-var Client = require('../dist/tunefind')
+var Client = require('../dist/tunefind').Client
 
 var client = new Client({
 	credentials: {
